@@ -2,13 +2,13 @@
 import unittest
 import math
 
-def my_frexp(input):
+def my_frexp(input_value):
     'use only integers'
-    if not input:
+    if not input_value:
         raise TypeError("x cannot be empty")
-    if not isinstance(input, int):
+    if not isinstance(input_value, int):
         raise TypeError("Input should be int")
-    return math.frexp(input)
+    return math.frexp(input_value)
 
 class TestFrexpMath(unittest.TestCase):
     "class to test custom frexp function"
@@ -23,7 +23,7 @@ class TestFrexpMath(unittest.TestCase):
     def test_empty_param(self):
         "empty params"
         with self.assertRaises(TypeError):
-            self.assertEqual(my_frexp(), True)
+            self.assertEqual(my_frexp(None), True)
 
     def test_missing_param(self):
         "missing params"
@@ -33,9 +33,9 @@ class TestFrexpMath(unittest.TestCase):
 
     def test_wrong_param_type(self):
         "wrong params"
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaises(TypeError):
             my_frexp("test")
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaises(TypeError):
             my_frexp([])
 
 if __name__ == '__main__':
